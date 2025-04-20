@@ -18,15 +18,13 @@ script.js – JavaScript logic for handling visualization and interactivity.
 📱 Responsive Design for Different Devices
 
 🛠️ Technologies Used
-HTML
-
-CSS (Custom, no frameworks)
-
-JavaScript (Vanilla)
+  -> HTML
+  -> CSS (Custom, no frameworks)
+  -> JavaScript (Vanilla)
 
 📸 Screenshots
+<br>
 <img src="screenshots/ui-preview.png" alt="App UI Screenshot" width="600"/>
-<img src="screenshots/user-guide.png" alt="App UI Screenshot" width="600"/>
 
 🧪 How to Use
 Clone the repository:
