@@ -1,0 +1,147 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TSP Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+    <div class="nav-item active" onclick="showPage('explanation')">Explanation</div>
+    <div class="nav-item" onclick="showPage('visualization')">Visualization</div>
+  </div>
+
+  <div id="explanation" class="page active">
+    <h1>Traveling Salesman Problem</h1>
+    <h2>Dynamic Programming with Bitmask Approach</h2>
+    
+    <div class="explanation-content">
+      <div class="hero-section">
+        <div class="hero-image">
+          <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Ccircle cx='65' cy='65' r='15' fill='%23f7d794'/%3E%3Ccircle cx='195' cy='65' r='15' fill='%23f7d794'/%3E%3Ccircle cx='195' cy='195' r='15' fill='%23f7d794'/%3E%3Ccircle cx='65' cy='195' r='15' fill='%23f7d794'/%3E%3Cpath d='M70 55L195 60M205 70L195 195M185 200L65 195M55 185L60 70' stroke='%23f39c12' stroke-width='4'/%3E%3Ctext x='65' y='65' text-anchor='middle' dominant-baseline='middle' font-size='16' font-weight='bold'%3E1%3C/text%3E%3Ctext x='195' y='65' text-anchor='middle' dominant-baseline='middle' font-size='16' font-weight='bold'%3E2%3C/text%3E%3Ctext x='195' y='195' text-anchor='middle' dominant-baseline='middle' font-size='16' font-weight='bold'%3E3%3C/text%3E%3Ctext x='65' y='195' text-anchor='middle' dominant-baseline='middle' font-size='16' font-weight='bold'%3E4%3C/text%3E%3C/svg%3E" alt="TSP Graph Example">
+        </div>
+        <div class="hero-text">
+          <p>The <span class="highlight">Traveling Salesman Problem</span> is one of the most famous challenges in computer science and optimization. It asks:</p>
+          <p class="quote">"Given a list of cities and the distances between each pair, what is the shortest possible route that visits each city exactly once and returns to the starting city?"</p>
+          <p>This visualization demonstrates how to solve TSP using <span class="highlight">Dynamic Programming with Bitmasks</span> — a powerful technique that reduces the complexity from O(n!) to O(n²·2ⁿ).</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Problem Definition</h3>
+        <div class="problem-statement">
+          <div class="problem-visual">
+            <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Ccircle cx='50' cy='50' r='15' fill='%23f7d794'/%3E%3Ccircle cx='170' cy='50' r='15' fill='%23f7d794'/%3E%3Ccircle cx='170' cy='170' r='15' fill='%23f7d794'/%3E%3Ccircle cx='50' cy='170' r='15' fill='%23f7d794'/%3E%3Cpath d='M50 50L170 50M170 50L170 170M170 170L50 170M50 170L50 50' stroke='%23f39c12' stroke-width='2'/%3E%3Ctext x='50' y='50' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='bold'%3EA%3C/text%3E%3Ctext x='170' y='50' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='bold'%3EB%3C/text%3E%3Ctext x='170' y='170' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='bold'%3EC%3C/text%3E%3Ctext x='50' y='170' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='bold'%3ED%3C/text%3E%3C/svg%3E" alt="TSP Graph Example">
+          </div>
+          <div class="problem-description">
+            <p><strong>Given:</strong> A graph with n cities and distances between each pair</p>
+            <p><strong>Goal:</strong> Find the shortest path that visits all cities exactly once and returns to the starting city</p>
+            <p><strong>Example:</strong> For cities A, B, C, D, find the shortest route like A→B→C→D→A.</p>
+            <p><strong>Challenge:</strong> There are (n-1)! possible routes to check - that's 3.6 million for just 10 cities!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Solution Approach: Dynamic Programming with Bitmasks</h3>
+        <p>
+          The brute force approach would check all possible permutations (O(n!) complexity).
+          Instead, we use dynamic programming with bitmasks to achieve O(n²·2ⁿ) complexity.
+        </p>
+
+        <div class="key-concepts">
+          <h4>Key Concepts:</h4>
+          <div class="concept-grid">
+            <div class="concept-card">
+              <div class="concept-icon">🔄</div>
+              <h5>State Representation</h5>
+              <p>g(i, S) = minimum cost of path visiting all vertices in set S exactly once, ending at vertex i</p>
+            </div>
+            <div class="concept-card">
+              <div class="concept-icon">🔢</div>
+              <h5>Bitmask</h5>
+              <p>We use bits to represent which cities have been visited (1 = visited, 0 = not visited)</p>
+            </div>
+            <div class="concept-card">
+              <div class="concept-icon">🧩</div>
+              <h5>Subproblems</h5>
+              <p>We solve smaller subproblems first and build up to the full solution</p>
+            </div>
+            <div class="concept-card">
+              <div class="concept-icon">🏁</div>
+              <h5>Base Case</h5>
+              <p>g(i, ∅) = direct cost from starting city to city i</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>The Recurrence Relation</h3>
+        <div class="formula">
+          g(i, S) = min{ C[i][j] + g(j, S-{j}) } for all j in S
+        </div>
+        <p class="formula-explanation">
+          Where C[i][j] is the cost of going from city i to city j, and S-{j} means the set S without city j.
+        </p>
+
+        <div class="algorithm-steps">
+          <h4>Algorithm Steps</h4>
+          <ol>
+            <li>Initialize base cases: g(i, ∅) = direct cost from starting city (1) to city i</li>
+            <li>For each subset size from 1 to n-1:
+              <ul>
+                <li>Generate all possible subsets of that size</li>
+                <li>For each unvisited city i and subset S, compute g(i, S)</li>
+              </ul>
+            </li>
+            <li>Find the optimal solution by considering all possible last steps to return to the starting city</li>
+            <li>Reconstruct the path using parent pointers</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="animation-teaser">
+        <h3>See the Algorithm in Action</h3>
+        <p>Watch how the algorithm explores different paths and finds the optimal solution step by step.</p>
+        <div class="button-container">
+          <button class="primary-button" onclick="showPage('visualization')">Explore the Visualization →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div id="visualization" class="page">
+  <h1>TSP Visualization: Dynamic Programming with Bitmasks</h1>
+  
+  <div class="matrix-container">
+    <h3>Distance Matrix</h3>
+    <div id="matrix"></div>
+    <div class="matrix-explanation">
+      <p>Each cell C[i][j] represents the <strong>distance</strong> from city i to city j.</p>
+      <p>Our goal is to find the <strong>shortest path</strong> that visits all cities exactly once and returns to the starting city.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <canvas id="canvas" width="500" height="500"></canvas>
+  </div>
+
+  <div id="logBox">
+    <h3>Step-by-Step Solution</h3>
+    <div id="log"></div>
+  </div>
+
+  <div class="controls">
+    <button onclick="stepIndex = 0; drawGraph(); document.getElementById('log').innerHTML='';">Reset</button>
+    <button onclick="nextStep()">Next Step</button>
+    <button onclick="runAllSteps()">Run All Steps</button>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

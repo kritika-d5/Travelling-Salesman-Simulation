@@ -1,0 +1,603 @@
+
+:root {
+  --primary-color: #f39c12;
+  --primary-dark: #d35400;
+  --secondary-color: #2c3e50;
+  --bg-color: #fffaf0;
+  --card-bg: #fff;
+  --card-border: #f0e8d8;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --highlight-bg: #fff5e6;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+
+#navbar {
+  display: flex;
+  background: var(--secondary-color);
+  padding: 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-item {
+  padding: 16px 30px;
+  color: #ecf0f1;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.nav-item.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background: white;
+}
+
+.page {
+  display: none;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.page.active {
+  display: block;
+}
+
+h1 {
+  font-size: 2.4rem;
+  color: var(--primary-dark);
+  margin: 1.5rem 0 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  margin: 0 0 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 1.3rem;
+  color: var(--primary-dark);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--card-border);
+  padding-bottom: 8px;
+  font-weight: 600;
+}
+
+.explanation-content {
+  background: var(--card-bg);
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(243, 156, 18, 0.1);
+}
+
+#explanation.active {
+  display: block;
+}
+
+#visualization.active {
+  display: grid;
+  grid-template-areas: 
+    "header header header"
+    "matrix canvas log"
+    "controls controls controls";
+  grid-template-columns: 250px 1fr 350px;
+  grid-template-rows: auto 1fr auto;
+  gap: 20px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+#explanation:not(.active), #visualization:not(.active) {
+  display: none !important;
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--card-border);
+}
+
+.hero-image {
+  flex: 0 0 260px;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text p {
+  margin: 0.8rem 0;
+  font-size: 1rem;
+}
+
+.highlight {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.quote {
+  font-style: italic;
+  background: var(--highlight-bg);
+  padding: 15px;
+  border-left: 4px solid var(--primary-color);
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+}
+
+.problem-statement {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin: 1.2rem 0;
+  padding: 18px;
+  background: var(--highlight-bg);
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+}
+
+.problem-visual {
+  flex: 0 0 220px;
+}
+
+.problem-description {
+  flex: 1;
+}
+
+.problem-description p {
+  margin: 0.6rem 0;
+  font-size: 0.95rem;
+}
+
+.problem-description strong {
+  color: var(--primary-dark);
+}
+
+.key-concepts {
+  background: var(--highlight-bg);
+  padding: 18px;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  border: 1px solid var(--card-border);
+}
+
+.key-concepts h4 {
+  margin-top: 0;
+  color: var(--primary-dark);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 15px;
+  margin-top: 1rem;
+}
+
+.concept-card {
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid var(--card-border);
+}
+
+.concept-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+}
+
+.concept-card h5 {
+  margin: 0 0 8px;
+  color: var(--primary-dark);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.concept-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.formula {
+  text-align: center;
+  background: var(--highlight-bg);
+  padding: 15px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.1rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  color: var(--primary-dark);
+}
+
+.formula-explanation {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+.algorithm-steps {
+  background: var(--card-bg);
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  margin: 1.5rem 0;
+}
+
+.algorithm-steps h4 {
+  margin-top: 0;
+  color: var(--primary-dark);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.algorithm-steps ol {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.algorithm-steps li {
+  margin-bottom: 0.8rem;
+}
+
+.algorithm-steps ul {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.algorithm-steps ul li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.animation-teaser {
+  text-align: center;
+  background: var(--highlight-bg);
+  padding: 25px;
+  border-radius: 10px;
+  margin: 2rem 0 1rem;
+  border: 1px solid var(--card-border);
+}
+
+.animation-teaser h3 {
+  margin-top: 0;
+  border-bottom: none;
+  color: var(--primary-dark);
+}
+
+.button-container {
+  margin-top: 1.5rem;
+}
+
+.primary-button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);
+}
+
+.primary-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(243, 156, 18, 0.4);
+}
+
+.matrix-container {
+  margin: 20px auto;
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  width: fit-content;
+  box-shadow: 0 4px 15px rgba(243, 156, 18, 0.1);
+}
+
+#matrix table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+#matrix th,
+#matrix td {
+  border: 1px solid var(--card-border);
+  padding: 10px 15px;
+  text-align: center;
+  font-weight: 500;
+  font-family: 'Roboto Mono', monospace;
+}
+
+#matrix th {
+  background-color: var(--highlight-bg);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+canvas {
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  box-shadow: 0 4px 15px rgba(243, 156, 18, 0.1);
+  border-radius: 10px;
+}
+
+#logBox {
+  width: 350px;
+  height: 500px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(243, 156, 18, 0.1);
+  text-align: left;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#logBox h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+#log {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 0;
+  height: calc(100% - 40px);
+  overflow-y: auto;
+}
+
+#log div {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+
+#log .base {
+  color: #757575;
+  background: #f8f8f8;
+}
+
+#log .step {
+  color: #2c3e50;
+  background: #f5f5f5;
+}
+
+#log .chosen {
+  color: #d35400;
+  font-weight: 500;
+  background: #fff5e6;
+}
+
+#log .final {
+  color: #8e44ad;
+  background: #f8f4fc;
+}
+
+#log .done {
+  color: var(--primary-dark);
+  font-weight: 600;
+  background: #fff3e0;
+}
+
+#log .path {
+  color: #d35400;
+  font-weight: 600;
+  background: #fff5e6;
+  border: 1px solid #ffecd1;
+}
+
+.controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(243, 156, 18, 0.2);
+}
+
+button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(243, 156, 18, 0.3);
+}
+
+#visualization {
+  display: grid;
+  grid-template-areas: 
+    "header header header"
+    "matrix canvas log"
+    "controls controls controls";
+  grid-template-columns: 250px 1fr 350px;
+  grid-template-rows: auto 1fr auto;
+  gap: 20px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.container canvas {
+  display: block;
+  margin-bottom: 15px;
+}
+
+#visualization h1 {
+  grid-area: header;
+  margin-bottom: 10px;
+}
+
+.matrix-container {
+  grid-area: matrix;
+  width: 100%;
+  height: max-content;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+}
+
+.matrix-container h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.matrix-explanation {
+  font-size: 0.85rem;
+  margin-top: 10px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.matrix-explanation strong {
+  color: var(--primary-dark);
+}
+
+.container {
+  grid-area: canvas;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+}
+
+#logBox {
+  grid-area: log;
+  width: 100%;
+  margin: 0;
+  max-height: 500px;
+}
+
+.controls {
+  grid-area: controls;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@media (max-width: 992px) {
+  #visualization {
+    grid-template-areas: 
+      "header"
+      "matrix"
+      "canvas"
+      "log"
+      "controls";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+  }
+  
+  .matrix-container, .container, #logBox {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  #matrix table {
+    width: 100%;
+  }
+}
+
+#matrix table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#matrix th,
+#matrix td {
+  border: 1px solid var(--card-border);
+  padding: 6px 10px;
+  text-align: center;
+  font-weight: 500;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+}
+
+#matrix th {
+  background-color: var(--highlight-bg);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
