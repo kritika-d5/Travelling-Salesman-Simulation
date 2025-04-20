@@ -13,7 +13,6 @@ An interactive, web-based visualization tool to help users understand and explor
 - 🔍 Interactive Algorithm Visualization
 - 🧠 Step-by-Step Explanation and Log Output
 - 🖌️ Custom UI with CSS Grid Layout
-- 📱 Responsive Design for Different Devices
 
 ## 🛠️ Technologies Used
 
@@ -24,6 +23,7 @@ An interactive, web-based visualization tool to help users understand and explor
 ## 📸 Screenshots
 
 **App UI Screenshot**  
+
 <img src="screenshots/ui-preview.png" alt="App UI Screenshot" width="600"/>
 
 ## 🧪 How to Use
